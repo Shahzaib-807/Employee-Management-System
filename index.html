@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | Employee Management System</title>
+  <link rel="stylesheet" href="css/common.css" />
+  <link rel="stylesheet" href="css/login.css" />
+</head>
+<body class="login-page">
+
+  <!-- Animated background: soft gradient blobs drifting behind the card -->
+  <div class="animated-background" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="grid-overlay"></div>
+  </div>
+
+  <div class="login-stage">
+    <div class="login-card">
+      <!-- Brand / info panel -->
+      <div class="login-brand-panel">
+        <div class="login-logo">🗂️</div>
+        <h1>Employee Management System</h1>
+        <p>A complete internship demo project built with TypeScript, showcasing CRUD operations, form validation, authentication, and role-based access control.</p>
+
+        <ul class="brand-feature-list">
+          <li>✓ Role-based dashboards for Admin, HR &amp; Employee</li>
+          <li>✓ Admin/HR-issued login credentials</li>
+          <li>✓ Approval workflow for password changes</li>
+        </ul>
+      </div>
+
+      <!-- Login form panel -->
+      <div class="login-form-panel">
+        <h2>Welcome back</h2>
+        <p class="login-subtitle">Sign in to access your dashboard.</p>
+
+        <form id="login-form" novalidate>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="text" id="email" name="email" autocomplete="username" placeholder="you@example.com" />
+            <div class="field-error" id="email-error"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="input-with-action">
+              <input type="password" id="password" name="password" autocomplete="current-password" placeholder="Enter your password" />
+              <button type="button" class="input-action-btn" id="toggle-password">Show</button>
+            </div>
+            <div class="field-error" id="password-error"></div>
+          </div>
+
+          <div class="general-error" id="general-error"></div>
+
+          <button type="submit" class="btn btn-primary btn-block" id="login-btn">Log In</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Floating demo credentials card -->
+    <div class="floating-demo-card">
+      <div class="floating-demo-header">✨ Demo Accounts <span>Click a card to autofill</span></div>
+      <div class="demo-account-grid">
+        <button type="button" class="demo-account-chip demo-admin" data-demo-email="admin@example.com" data-demo-password="admin123">
+          <span class="demo-chip-role">Admin</span>
+          <span class="demo-chip-email">admin@example.com</span>
+          <span class="demo-chip-password">admin123</span>
+        </button>
+        <button type="button" class="demo-account-chip demo-hr" data-demo-email="hr@example.com" data-demo-password="hr123">
+          <span class="demo-chip-role">HR</span>
+          <span class="demo-chip-email">hr@example.com</span>
+          <span class="demo-chip-password">hr123</span>
+        </button>
+        <button type="button" class="demo-account-chip demo-employee" data-demo-email="employee@example.com" data-demo-password="employee123">
+          <span class="demo-chip-role">Employee</span>
+          <span class="demo-chip-email">employee@example.com</span>
+          <span class="demo-chip-password">employee123</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+  <div id="modal-root"></div>
+
+  <script type="module" src="dist/login.js"></script>
+</body>
+</html>

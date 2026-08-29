@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Profile | Employee Management System</title>
+  <link rel="stylesheet" href="css/common.css" />
+  <link rel="stylesheet" href="css/employee.css" />
+</head>
+<body class="portal-page">
+
+  <header class="portal-header">
+    <div class="portal-brand">
+      <div class="logo-icon">🗂️</div>
+      Employee Portal
+    </div>
+    <div class="portal-user">
+      <span class="hide-mobile">Signed in as <strong id="current-user-name">-</strong></span>
+      <button class="btn btn-secondary" id="logout-btn">Logout</button>
+    </div>
+  </header>
+
+  <main class="portal-body">
+
+    <div class="welcome-banner">
+      <h1>Welcome back, <span id="welcome-name">-</span> 👋</h1>
+      <p>Here is your personal profile. You can update your phone number and address at any time.</p>
+    </div>
+
+    <div class="profile-card" id="profile-content">
+      <div class="profile-card-top">
+        <div class="profile-avatar" id="profile-avatar">--</div>
+        <div class="profile-name-block">
+          <h2 id="profile-name">-</h2>
+          <p id="profile-position">-</p>
+          <span class="status-badge" id="profile-status">-</span>
+        </div>
+        <button class="btn btn-secondary print-btn" id="print-profile-btn">🖨️ Print Profile</button>
+      </div>
+
+      <div class="profile-fields-grid">
+        <div class="profile-field">
+          <span class="profile-field-label profile-field-locked">Employee ID <span class="lock-badge">Locked</span></span>
+          <span class="profile-field-value" id="profile-id">-</span>
+        </div>
+        <div class="profile-field">
+          <span class="profile-field-label profile-field-locked">Full Name <span class="lock-badge">Locked</span></span>
+          <span class="profile-field-value" id="profile-name-2">-</span>
+        </div>
+        <div class="profile-field">
+          <span class="profile-field-label profile-field-locked">Email <span class="lock-badge">Locked</span></span>
+          <span class="profile-field-value" id="profile-email">-</span>
+        </div>
+        <div class="profile-field">
+          <span class="profile-field-label">Phone Number</span>
+          <span class="profile-field-value" id="profile-phone">-</span>
+        </div>
+        <div class="profile-field">
+          <span class="profile-field-label profile-field-locked">Department <span class="lock-badge">Locked</span></span>
+          <span class="profile-field-value" id="profile-department">-</span>
+        </div>
+        <div class="profile-field">
+          <span class="profile-field-label profile-field-locked">Position <span class="lock-badge">Locked</span></span>
+          <span class="profile-field-value" id="profile-position-2">-</span>
+        </div>
+        <div class="profile-field">
+          <span class="profile-field-label profile-field-locked">Salary <span class="lock-badge">Locked</span></span>
+          <span class="profile-field-value" id="profile-salary">-</span>
+        </div>
+        <div class="profile-field">
+          <span class="profile-field-label profile-field-locked">Joining Date <span class="lock-badge">Locked</span></span>
+          <span class="profile-field-value" id="profile-joining-date">-</span>
+        </div>
+        <div class="profile-field" style="grid-column: span 2;">
+          <span class="profile-field-label">Address</span>
+          <span class="profile-field-value" id="profile-address">-</span>
+        </div>
+      </div>
+
+      <div class="profile-card-footer no-print">
+        <button class="btn btn-primary" id="edit-profile-btn">Edit Profile</button>
+      </div>
+    </div>
+
+    <div class="profile-card no-print" id="account-card">
+      <h3 class="account-card-title">🔐 My Account</h3>
+      <p class="card-subtext">You can view your login credentials below. Password changes require Admin approval.</p>
+      <div class="account-pending-banner hidden" id="account-pending-banner"></div>
+      <div class="account-field">
+        <span class="account-field-label">Login Email</span>
+        <span class="account-field-value" id="account-email">-</span>
+      </div>
+      <div class="account-field">
+        <span class="account-field-label">Password</span>
+        <span class="account-field-value-row">
+          <span class="account-field-value masked-password" id="account-password">-</span>
+          <button type="button" class="input-action-btn" id="account-reveal-btn">Show</button>
+        </span>
+      </div>
+      <button type="button" class="btn btn-primary" id="request-password-btn">Request Password Change</button>
+    </div>
+
+    <div class="profile-card hidden" id="no-profile-state">
+      <p class="empty-text">No employee record is linked to your account. Please contact HR or Admin.</p>
+    </div>
+
+  </main>
+
+  <div id="toast-container"></div>
+  <div id="edit-modal-root"></div>
+  <div id="request-password-modal-root"></div>
+
+  <script type="module" src="dist/employee.js"></script>
+</body>
+</html>

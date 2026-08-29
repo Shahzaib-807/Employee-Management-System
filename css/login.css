@@ -1,0 +1,314 @@
+/* ============================================================
+   login.css
+   Clean, centered, modern authentication design for index.html,
+   with an animated gradient background and a floating demo
+   credentials card that sits alongside the main login card.
+   ============================================================ */
+
+.login-page {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #3730a3 0%, #6d28d9 50%, #4f46e5 100%);
+  padding: var(--space-md);
+  overflow: hidden;
+}
+
+/* ------------------------------------------------------------
+   ANIMATED BACKGROUND
+   ------------------------------------------------------------ */
+
+.animated-background {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.55;
+  will-change: transform;
+}
+
+.blob-1 {
+  width: 420px;
+  height: 420px;
+  background: #a78bfa;
+  top: -120px;
+  left: -100px;
+  animation: float-blob-1 16s ease-in-out infinite;
+}
+
+.blob-2 {
+  width: 380px;
+  height: 380px;
+  background: #22d3ee;
+  bottom: -140px;
+  right: -80px;
+  animation: float-blob-2 20s ease-in-out infinite;
+}
+
+.blob-3 {
+  width: 320px;
+  height: 320px;
+  background: #f472b6;
+  top: 40%;
+  left: 55%;
+  animation: float-blob-3 18s ease-in-out infinite;
+}
+
+@keyframes float-blob-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(60px, 40px) scale(1.1); }
+  66% { transform: translate(-30px, 60px) scale(0.95); }
+}
+
+@keyframes float-blob-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-50px, -30px) scale(1.05); }
+  66% { transform: translate(30px, -50px) scale(0.9); }
+}
+
+@keyframes float-blob-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-70px, 30px) scale(1.15); }
+}
+
+.grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+}
+
+/* ------------------------------------------------------------
+   STAGE: main login card + floating demo card, stacked/side-by-side
+   ------------------------------------------------------------ */
+
+.login-stage {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+  width: 100%;
+  max-width: 900px;
+}
+
+.login-card {
+  background-color: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(6px);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  animation: card-enter 0.5s ease;
+}
+
+@keyframes card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.login-brand-panel {
+  background: linear-gradient(160deg, #4f46e5, #4338ca);
+  color: #fff;
+  padding: var(--space-2xl) var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-logo {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-md);
+  background-color: rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  margin-bottom: var(--space-lg);
+}
+
+.login-brand-panel h1 {
+  font-size: 24px;
+  margin: 0 0 var(--space-sm) 0;
+}
+
+.login-brand-panel p {
+  font-size: 14px;
+  opacity: 0.9;
+  line-height: 1.6;
+  margin: 0 0 var(--space-lg) 0;
+}
+
+.brand-feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.brand-feature-list li {
+  font-size: 13px;
+  background-color: rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+}
+
+.login-form-panel {
+  padding: var(--space-2xl) var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-form-panel h2 {
+  margin: 0 0 var(--space-xs) 0;
+  font-size: 22px;
+}
+
+.login-form-panel .login-subtitle {
+  color: var(--color-text-muted);
+  font-size: 14px;
+  margin: 0 0 var(--space-lg) 0;
+}
+
+/* ------------------------------------------------------------
+   FLOATING DEMO CREDENTIALS CARD
+   ------------------------------------------------------------ */
+
+.floating-demo-card {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  animation: floating-card 5s ease-in-out infinite;
+  box-shadow: var(--shadow-md);
+}
+
+@keyframes floating-card {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.floating-demo-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: var(--space-md);
+}
+
+.floating-demo-header span {
+  font-weight: 400;
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.demo-account-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+
+.demo-account-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  cursor: pointer;
+  text-align: left;
+  transition: transform var(--transition), box-shadow var(--transition);
+  border-top: 3px solid transparent;
+}
+
+.demo-account-chip:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.demo-admin {
+  border-top-color: #4f46e5;
+}
+
+.demo-hr {
+  border-top-color: #0d9488;
+}
+
+.demo-employee {
+  border-top-color: #ec4899;
+}
+
+.demo-chip-role {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+}
+
+.demo-chip-email {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text);
+  word-break: break-all;
+}
+
+.demo-chip-password {
+  font-size: 12px;
+  font-family: "Courier New", monospace;
+  color: var(--color-text-muted);
+}
+
+@media (max-width: 760px) {
+  .login-card {
+    grid-template-columns: 1fr;
+  }
+
+  .login-brand-panel {
+    padding: var(--space-xl) var(--space-lg);
+  }
+
+  .login-form-panel {
+    padding: var(--space-xl) var(--space-lg);
+  }
+
+  .demo-account-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .blob {
+    filter: blur(40px);
+  }
+}

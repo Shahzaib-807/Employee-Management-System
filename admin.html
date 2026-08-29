@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard | Employee Management System</title>
+  <link rel="stylesheet" href="css/common.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+
+  <div class="app-layout">
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="logo-icon">🗂️</div>
+        <div class="sidebar-brand-text">
+          Employee Management
+          <span>Admin Panel</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-link nav-active" data-view="dashboard">📊 Dashboard</div>
+        <div class="nav-link" data-view="employees">👥 Employees</div>
+        <div class="nav-link" data-view="add-employee">➕ Add Employee</div>
+        <div class="nav-link" data-view="departments">🏢 Departments</div>
+        <div class="nav-link" data-view="activity">🕒 Activity Log</div>
+        <div class="nav-link nav-link-settings" data-view="settings">
+          ⚙️ Settings
+          <span class="notification-badge hidden" id="settings-badge">0</span>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="btn btn-secondary" id="logout-btn">Logout</button>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+      <header class="topbar">
+        <div style="display:flex; align-items:center; gap: 12px;">
+          <button class="sidebar-toggle" id="sidebar-toggle">☰</button>
+          <div class="topbar-title">Admin Dashboard</div>
+        </div>
+        <div class="topbar-user">
+          Signed in as <strong id="current-user-name">-</strong>
+        </div>
+      </header>
+
+      <main class="content-body">
+
+        <!-- DASHBOARD VIEW -->
+        <section class="view-section view-active" data-view="dashboard">
+          <div class="section-header">
+            <div>
+              <h2>Dashboard Overview</h2>
+              <p>A quick summary of your organization.</p>
+            </div>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-card-label">Total Employees</div>
+              <div class="stat-card-value" id="stat-total-employees">0</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-label">Total Departments</div>
+              <div class="stat-card-value" id="stat-total-departments">0</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-label">Recent Employees</div>
+              <div class="stat-card-value" id="stat-recent-employees">0</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-label">Average Salary</div>
+              <div class="stat-card-value" id="stat-average-salary">$0</div>
+            </div>
+          </div>
+
+          <div class="dashboard-columns">
+            <div class="card">
+              <h3>Recently Joined Employees</h3>
+              <div id="recent-employees-list"></div>
+            </div>
+            <div class="card">
+              <h3>Recent Activity</h3>
+              <div id="dashboard-activity-list"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- EMPLOYEES VIEW -->
+        <section class="view-section" data-view="employees">
+          <div class="section-header">
+            <div>
+              <h2>Employees</h2>
+              <p>Full CRUD access, plus login credential management.</p>
+            </div>
+            <button class="btn btn-secondary" id="export-csv-btn">⬇ Export CSV</button>
+          </div>
+
+          <div class="filters-bar">
+            <input type="text" id="search-input" placeholder="Search by name or email..." />
+            <select id="department-filter">
+              <option value="all">All Departments</option>
+            </select>
+            <select id="status-filter">
+              <option value="all">All Statuses</option>
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+            </select>
+          </div>
+
+          <div class="table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th class="sortable" data-sort-field="fullName">Name</th>
+                  <th>Email</th>
+                  <th class="sortable" data-sort-field="department">Department</th>
+                  <th class="sortable" data-sort-field="position">Position</th>
+                  <th class="sortable" data-sort-field="salary">Salary</th>
+                  <th class="sortable" data-sort-field="joiningDate">Joined</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="employees-table-body"></tbody>
+            </table>
+            <p class="empty-text hidden" id="employees-empty-state">No employees found. Try adjusting your search or filters.</p>
+          </div>
+        </section>
+
+        <!-- ADD/EDIT EMPLOYEE VIEW -->
+        <section class="view-section" data-view="add-employee">
+          <div class="section-header">
+            <div>
+              <h2 id="form-title">Add New Employee</h2>
+              <p>All fields are required.</p>
+            </div>
+          </div>
+
+          <div class="form-card">
+            <form id="employee-form" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="fullName">Full Name</label>
+                  <input type="text" id="fullName" placeholder="e.g. Jane Smith" />
+                  <div class="field-error" id="fullName-error"></div>
+                </div>
+                <div class="form-group">
+                  <label for="email">Email (also used as login)</label>
+                  <input type="text" id="email" placeholder="e.g. jane.smith@example.com" />
+                  <div class="field-error" id="email-error"></div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="phone">Phone</label>
+                  <input type="text" id="phone" placeholder="e.g. 555-123-4567" />
+                  <div class="field-error" id="phone-error"></div>
+                </div>
+                <div class="form-group">
+                  <label for="department">Department</label>
+                  <input type="text" id="department" placeholder="e.g. Information Technology" />
+                  <div class="field-error" id="department-error"></div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="position">Position</label>
+                  <input type="text" id="position" placeholder="e.g. Software Engineer" />
+                  <div class="field-error" id="position-error"></div>
+                </div>
+                <div class="form-group">
+                  <label for="salary">Salary</label>
+                  <input type="number" id="salary" placeholder="e.g. 65000" />
+                  <div class="field-error" id="salary-error"></div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="joiningDate">Joining Date</label>
+                  <input type="date" id="joiningDate" />
+                  <div class="field-error" id="joiningDate-error"></div>
+                </div>
+                <div class="form-group">
+                  <label for="address">Address</label>
+                  <textarea id="address" rows="1" placeholder="e.g. 12 Maple Street, Springfield"></textarea>
+                  <div class="field-error" id="address-error"></div>
+                </div>
+              </div>
+
+              <div class="credentials-field-group" id="credentials-field-group">
+                <div class="credentials-divider">🔑 Login Credentials</div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="text" id="password" placeholder="At least 6 characters" />
+                    <div class="password-strength-track"><div class="password-strength-fill" id="password-strength-bar"></div></div>
+                    <div class="password-strength-label" id="password-strength-label"></div>
+                    <div class="field-error" id="password-error"></div>
+                  </div>
+                  <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="text" id="confirmPassword" placeholder="Re-enter password" />
+                    <div class="field-error" id="confirmPassword-error"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary" id="employee-submit-btn">Add Employee</button>
+                <button type="button" class="btn btn-secondary hidden" id="cancel-edit-btn">Cancel Edit</button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- DEPARTMENTS VIEW -->
+        <section class="view-section" data-view="departments">
+          <div class="section-header">
+            <div>
+              <h2>Departments</h2>
+              <p>An overview of every department currently in use.</p>
+            </div>
+          </div>
+
+          <div class="departments-grid" id="departments-list"></div>
+        </section>
+
+        <!-- ACTIVITY LOG VIEW -->
+        <section class="view-section" data-view="activity">
+          <div class="section-header">
+            <div>
+              <h2>Activity Log</h2>
+              <p>A history of important actions taken across the system.</p>
+            </div>
+          </div>
+
+          <div id="audit-log-list"></div>
+        </section>
+
+        <!-- SETTINGS VIEW -->
+        <section class="view-section" data-view="settings">
+          <div class="section-header">
+            <div>
+              <h2>Settings</h2>
+              <p>Manage your own credentials, HR accounts, and password change requests.</p>
+            </div>
+          </div>
+
+          <div class="settings-grid">
+            <div class="card">
+              <h3>My Credentials</h3>
+              <form id="my-credentials-form" novalidate>
+                <div class="form-group">
+                  <label for="settings-my-email">Email</label>
+                  <input type="text" id="settings-my-email" />
+                  <div class="field-error" id="settings-my-email-error"></div>
+                </div>
+                <div class="form-group">
+                  <label for="settings-my-password">New Password (leave blank to keep current)</label>
+                  <input type="text" id="settings-my-password" placeholder="At least 6 characters" />
+                  <div class="field-error" id="settings-my-password-error"></div>
+                </div>
+                <div class="form-group">
+                  <label for="settings-my-confirm-password">Confirm New Password</label>
+                  <input type="text" id="settings-my-confirm-password" placeholder="Re-enter new password" />
+                  <div class="field-error" id="settings-my-confirm-password-error"></div>
+                </div>
+                <button type="submit" class="btn btn-primary">Save My Credentials</button>
+              </form>
+            </div>
+
+            <div class="card">
+              <h3>HR Accounts</h3>
+              <p class="card-subtext">As Admin, you can directly edit HR login credentials.</p>
+              <div id="hr-accounts-list"></div>
+            </div>
+
+            <div class="card card-full">
+              <h3>Pending Password Change Requests</h3>
+              <p class="card-subtext">Submitted by HR or Employee users. Review the requested password before approving.</p>
+              <div id="pending-requests-list"></div>
+            </div>
+
+            <div class="card card-full">
+              <h3>Recent Request History</h3>
+              <div id="request-history-list"></div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+  <div id="modal-root"></div>
+  <div id="details-modal-root"></div>
+  <div id="credentials-modal-root"></div>
+
+  <script type="module" src="dist/admin.js"></script>
+</body>
+</html>

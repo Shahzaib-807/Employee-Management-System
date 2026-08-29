@@ -1,0 +1,204 @@
+/* ============================================================
+   employee.css
+   Simple, personal profile portal styling for employee.html.
+   No sidebar - a single centered card-based layout that feels
+   calm and personal rather than a "management" tool.
+   ============================================================ */
+
+.portal-page {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+}
+
+.portal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md) var(--space-xl);
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.portal-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.portal-brand .logo-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.portal-user {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.portal-body {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-md) var(--space-2xl);
+}
+
+.welcome-banner {
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  color: #fff;
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  margin-bottom: var(--space-xl);
+}
+
+.welcome-banner h1 {
+  margin: 0 0 var(--space-xs) 0;
+  font-size: 22px;
+}
+
+.welcome-banner p {
+  margin: 0;
+  opacity: 0.9;
+  font-size: 14px;
+}
+
+.profile-card {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-xl);
+}
+
+.profile-card-top {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
+  flex-wrap: wrap;
+}
+
+.profile-avatar {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  color: #fff;
+  font-size: 28px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.profile-name-block h2 {
+  margin: 0 0 4px 0;
+  font-size: 20px;
+}
+
+.profile-name-block p {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
+
+.profile-fields-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+}
+
+.profile-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.profile-field-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+}
+
+.profile-field-value {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.profile-field-locked {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.lock-badge {
+  font-size: 10px;
+  color: var(--color-text-muted);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 1px 8px;
+}
+
+.profile-card-footer {
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 600px) {
+  .portal-header {
+    padding: var(--space-md);
+  }
+
+  .portal-user span.hide-mobile {
+    display: none;
+  }
+
+  .profile-fields-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-card {
+    padding: var(--space-lg);
+  }
+}
+
+/* ------------------------------------------------------------
+   PRINT BUTTON & "MY ACCOUNT" CARD (added alongside profile)
+   ------------------------------------------------------------ */
+
+.print-btn {
+  margin-left: auto;
+}
+
+.account-card-title {
+  margin: 0 0 4px 0;
+  font-size: 17px;
+}
+
+@media (max-width: 600px) {
+  .print-btn {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .profile-card-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

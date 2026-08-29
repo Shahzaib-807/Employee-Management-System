@@ -1,0 +1,22 @@
+{
+  "name": "employee-management-system",
+  "version": "1.0.0",
+  "description": "A TypeScript-based Employee Management System with Admin, HR, and Employee dashboards, built as an internship project to demonstrate CRUD operations, form validation, authentication, and role-based access control using vanilla HTML, CSS, TypeScript, and localStorage.",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch"
+  },
+  "keywords": [
+    "typescript",
+    "employee-management",
+    "crud",
+    "localstorage",
+    "internship-project"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}

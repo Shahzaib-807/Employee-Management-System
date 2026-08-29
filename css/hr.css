@@ -1,0 +1,285 @@
+/* ============================================================
+   hr.css
+   Employee-focused management workspace styling for hr.html.
+   Uses a light sidebar with a teal accent to feel distinct from
+   the Admin's dark "command center" look.
+   ============================================================ */
+
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ------------------------------------------------------------
+   SIDEBAR (light, teal accent)
+   ------------------------------------------------------------ */
+
+.sidebar {
+  width: 250px;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  transition: transform var(--transition);
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-lg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.sidebar-brand .logo-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background-color: #0d9488;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.sidebar-brand-text {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.sidebar-brand-text span {
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: var(--space-md) var(--space-sm);
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 11px 14px;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 2px;
+  transition: background-color var(--transition), color var(--transition);
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  background-color: #f0fdfa;
+  color: #0d9488;
+}
+
+.nav-link.nav-active {
+  background-color: #0d9488;
+  color: #fff;
+}
+
+.sidebar-footer {
+  padding: var(--space-md);
+  border-top: 1px solid var(--color-border);
+}
+
+.sidebar-footer .btn {
+  width: 100%;
+}
+
+/* ------------------------------------------------------------
+   MAIN CONTENT
+   ------------------------------------------------------------ */
+
+.main-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md) var(--space-xl);
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.topbar-title {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.topbar-user {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.topbar-user strong {
+  color: var(--color-text);
+}
+
+.sidebar-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: var(--color-text);
+}
+
+.content-body {
+  padding: var(--space-xl);
+  flex: 1;
+}
+
+.view-section {
+  display: none;
+}
+
+.view-section.view-active {
+  display: block;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.section-header h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.section-header p {
+  margin: 4px 0 0 0;
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+.card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+/* HR stat cards get a small teal accent bar to differentiate from Admin */
+.stat-card {
+  border-left: 4px solid #0d9488;
+}
+
+.filters-bar {
+  display: flex;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.filters-bar input,
+.filters-bar select {
+  max-width: 260px;
+}
+
+.form-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-sm);
+  max-width: 760px;
+}
+
+.form-actions {
+  display: flex;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.departments-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-md);
+}
+
+.department-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid #0d9488;
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.department-card h3 {
+  margin: 0 0 var(--space-xs) 0;
+  font-size: 15px;
+}
+
+.department-card p {
+  margin: 2px 0;
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+/* Restriction notice banner shown on HR page */
+.restriction-note {
+  background-color: #fffbeb;
+  border: 1px solid #fde68a;
+  color: #92400e;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  margin-bottom: var(--space-md);
+}
+
+/* ------------------------------------------------------------
+   RESPONSIVE
+   ------------------------------------------------------------ */
+
+@media (max-width: 900px) {
+  .sidebar-toggle {
+    display: block;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    transform: translateX(-100%);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .sidebar.sidebar-open {
+    transform: translateX(0);
+  }
+
+  .content-body {
+    padding: var(--space-md);
+  }
+
+  .topbar {
+    padding: var(--space-md);
+  }
+}
